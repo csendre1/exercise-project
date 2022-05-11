@@ -9,6 +9,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RegistrationComponent } from './components/registration/registration.component';
 import { DesignModule } from '../design/design.module';
 import { NavigationModule } from '../navigation/navigation.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NavigationModule } from '../navigation/navigation.module';
     ReactiveFormsModule,
     AuthRoutingModule,
     DesignModule,
-    NavigationModule
+    NavigationModule,
+    TranslateModule
   ],
 })
 export class AuthModule { }

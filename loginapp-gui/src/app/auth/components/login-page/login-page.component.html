@@ -1,6 +1,6 @@
 <div class="container">
   <div class="inputs">
-    <p [hidden]="isAllCompleted">Please complete all fields.</p>
+    <p [hidden]="isAllCompleted">{{ "auth.error" | translate }}</p>
     <span class="p-float-label p-input-icon-right">
       <i class="pi pi-user"></i>
       <input
@@ -9,7 +9,7 @@
         pInputText
         [(ngModel)]="user.username"
       />
-      <label for="float-input">Username</label>
+      <label for="float-input">{{ "auth.username" | translate }}</label>
     </span>
     <span class="p-float-label">
       <p-password
@@ -19,7 +19,7 @@
         [(ngModel)]="user.password"
         [feedback]="false"
       ></p-password>
-      <label for="float-password">Password</label>
+      <label for="float-password">{{ "auth.password" | translate }}</label>
     </span>
     <button
       pButton
@@ -33,8 +33,8 @@
       *ngIf="loggingIn"
     ></i>
     <p id="new-account">
-      Don't have an account register
-      <a routerLink="/login/register">here.</a>
+      {{ "auth.no-account" | translate }}
+      <a routerLink="/login/register">{{ "auth.here" | translate }}</a>
     </p>
   </div>
 </div>

@@ -1,9 +1,23 @@
 {
   "title" : "Login-APP",
   "welcome": "Welcome",
-  "dashboard.button": "Dashboard",
-  "products.button" : "Products",
+  "dashboard":{
+    "link": "Dashboard"
+  },
   "add.new.product" : "Add product",
-  "extract" : "Extract",
-  "products.page.title" : "Products list"
+  "export" : "Extract",
+  "products" : {
+    "link" : "Products",
+    "title": "Product list",
+    "new" : "Add new"
+  },
+  "auth": {
+    "username" : "Username",
+    "password" : "Password",
+    "login-button": "Log in",
+    "error" : "Please complete all fields.",
+    "no-account": "Don't have an account register",
+    "here" : "here."
+  }
+
 }
