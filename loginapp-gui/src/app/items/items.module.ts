@@ -6,6 +6,7 @@ import { ItemsPageComponent } from './components/items-page/items-page.component
 import { DesignModule } from '../design/design.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddNewItemComponent } from './components/add-new-item/add-new-item.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AddNewItemComponent } from './components/add-new-item/add-new-item.comp
   imports: [
     CommonModule,
     ItemsRoutingModule,
-    DesignModule
+    DesignModule,
+    TranslateModule
   ]
 })
 export class ItemsModule { }

@@ -1,7 +1,9 @@
 {
   "title" : "Login-APP",
+  "welcome": "Welcome",
   "dashboard.button": "Dashboard",
   "products.button" : "Products",
   "add.new.product" : "Add product",
-  "extract" : "Extract"
+  "extract" : "Extract",
+  "products.page.title" : "Products list"
 }

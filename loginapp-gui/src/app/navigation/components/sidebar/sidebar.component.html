@@ -1,11 +1,11 @@
 <aside>
   <h1 class="text-4xlg align-items-center welcome" routerLinkActive="is-active">
-    Welcome
+    {{ "welcome" | translate }}
   </h1>
-  <a routerLink="/dashboard" class="menu-item" routerLinkActive="is-active"
-    >Dashboard</a
-  >
-  <a routerLink="/items" class="menu-item" routerLinkActive="is-active"
-    >Products</a
-  >
+  <a routerLink="/dashboard" class="menu-item" routerLinkActive="is-active">{{
+    "dashboard.button" | translate
+  }}</a>
+  <a routerLink="/items" class="menu-item" routerLinkActive="is-active">{{
+    "products.page.title" | translate
+  }}</a>
 </aside>

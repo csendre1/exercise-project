@@ -6,6 +6,7 @@ import { DesignModule } from '../design/design.module';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ActivatedDirective } from '../directive/activated.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -19,6 +20,7 @@ import { ActivatedDirective } from '../directive/activated.directive';
     CommonModule,
     DesignModule,
     RouterModule,
+    TranslateModule
   ],
   exports: [
     HeaderComponent,

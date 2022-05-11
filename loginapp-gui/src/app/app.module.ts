@@ -9,7 +9,6 @@ import { JwtTokenInterceptor } from './interceptor/jwt-token.interceptor';
 import { NavigationModule } from './navigation/navigation.module';
 import { MessageService } from 'primeng/api';
 import { DesignModule } from './design/design.module';
-import { ActivatedDirective } from './directive/activated.directive';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
