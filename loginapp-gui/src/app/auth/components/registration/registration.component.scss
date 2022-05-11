@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+form{
+    box-shadow: 5px 10px 5px 10px #ddd3d3;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    width: 40em;
+    height: 50em;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: aliceblue;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    input{
+        margin-top: 1em;
+        width: 20em;
+    }
+
+    label{
+        font-size: 1.6em;
+    }
+
+    .file-upload{
+      width: 26em;
+    }
+
+}
+
+.buttons{
+
+    button{
+        margin: 1.2em;
+    }
+}

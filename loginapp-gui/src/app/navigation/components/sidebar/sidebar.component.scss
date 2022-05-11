@@ -1,0 +1,29 @@
+aside{
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(143, 201, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome{
+  margin-top: 2em;
+}
+
+a{
+  background-color: rgb(189, 253, 255);
+  text-decoration: none;
+  margin-top: 2em;
+  padding: 1em;
+  align-items: center;
+  border-radius: 10%;
+}
+
+a:visited{
+  color: black;
+}
+
+.is-active{
+  background-color: rgb(110, 248, 133);
+}

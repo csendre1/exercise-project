@@ -1,0 +1,74 @@
+<div class="container">
+  <form class="reg-fields" [formGroup]="newUserForms">
+    <h1>Registration page</h1>
+    <div class="field">
+      <label for="name" class="block">Name</label>
+      <input id="name" type="text" pInputText formControlName="name" />
+    </div>
+    <div class="field">
+      <label for="username" class="block">Username</label>
+      <input
+        id="username"
+        type="text"
+        pInputText
+        formControlName="username"
+        [ngClass]="isErrorPresent('username') ? 'ng-invalid ng-dirty' : ''"
+      />
+      <small
+        id="username"
+        class="p-error block"
+        *ngIf="isErrorPresent('username')"
+        >Username is mandatory.</small
+      >
+    </div>
+    <div class="field">
+      <label for="password" class="block">Password</label>
+      <input
+        id="password"
+        type="password"
+        pPassword
+        formControlName="password"
+        [feedback]="false"
+        [ngClass]="isErrorPresent('password') ? 'ng-invalid ng-dirty' : ''"
+      />
+      <small
+        id="password"
+        class="p-error block"
+        *ngIf="isErrorPresent('password')"
+        >Password is mandatory.</small
+      >
+    </div>
+    <div class="field">
+      <label for="profilePicture" class="block">Profile picture</label>
+      <p-fileUpload
+        id="profilePicture"
+        class="file-upload"
+        accept="image/*"
+        [maxFileSize]="1000000"
+        (onSelect)="onSelect($event)"
+        [showUploadButton]="false"
+        [showCancelButton]="false"
+      >
+        <ng-template let-file pTemplate="file">
+          <p>{{ file.name }}</p>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+    <span class="buttons">
+      <button
+        pButton
+        type="button"
+        label="Register"
+        class="p-button-rounded p-button-success"
+        (click)="register()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        class="p-button-rounded p-button-danger"
+        (click)="cancel()"
+      ></button>
+    </span>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+.main{
+  display: grid;
+  grid-template-columns: 10em ;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content"
+    "footer footer";
+}
+
+.header{
+  grid-area: header;
+}
+
+.sidebar{
+  grid-area: sidebar;
+}
+
+.content{
+  grid-area: content;
+}
+

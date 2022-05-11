@@ -1,0 +1,12 @@
+<header>
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+  </div>
+    <div class="p-toolbar-group-right">
+        <p-avatar [image]="image" [hidden]="!imageNotNull"></p-avatar>
+        <p-avatar icon="pi pi-user" [hidden]="imageNotNull"></p-avatar>
+        <h3>{{username}}</h3>
+        <button class="user-menu" (click)="logout()"><i class="pi pi-sign-out"></i></button>
+    </div>
+  </p-toolbar>
+</header>

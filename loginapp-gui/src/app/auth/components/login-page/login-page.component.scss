@@ -1,0 +1,40 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputs{
+    box-shadow: 5px 10px #b6a7a7;
+    background-color: aliceblue;
+    margin-top: 50px;
+    display: flex;
+    width: 300px;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    p{
+        color: red;
+    }
+    
+}
+
+#new-account{
+    color: #000;
+
+    a {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: blue;
+        text-decoration: none;
+    }
+    
+    a:visited{
+        color: blue;
+    }
+}
+

@@ -1,0 +1,99 @@
+<div class="grid">
+  <h1>Products list</h1>
+  <div class="export-button">
+    <button
+      pButton
+      (click)="exportProducts()"
+      type="button"
+      icon="pi pi-upload"
+      label="Export"
+    ></button>
+  </div>
+  <div class="export-type">
+    <p-dropdown
+      [options]="exportTypes"
+      optionLabel="name"
+      optionValue="value"
+      [(ngModel)]="exporter"
+    >
+    </p-dropdown>
+  </div>
+  <div class="add-button">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-plus"
+      label="Add new"
+      (click)="showDialog()"
+    ></button>
+  </div>
+  <p-table
+    class="table"
+    [value]="productList"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[3, 10, 25, 50]"
+    [resizableColumns]="true"
+    [rowHover]="true"
+    [(selection)]="selectedProductList"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem"></th>
+        <th>Item name</th>
+        <th>Serial number</th>
+        <th>Description</th>
+        <th>Item condition</th>
+        <th>Added time</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="product"></p-tableCheckbox>
+        </td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.serialNumber }}</td>
+        <td
+          class="description"
+          pTooltip="{{ product.description }}"
+          tooltipPosition="bottom"
+        >
+          {{ product.description }}
+        </td>
+        <td>{{ product.itemCondition }}</td>
+        <td>{{ product.addedTime | date: "dd-MM-yyyy" }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-warning p-button-text"
+            (click)="updateProduct(product)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger p-button-text"
+            (click)="deleteProduct(product.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmDialog
+  [style]="{ width: '30vw' }"
+  [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+<app-add-new-item
+  [opened]="displayDialog"
+  [product]="productToUpgrade"
+  (dialogClosed)="closedDialog($event)"
+></app-add-new-item>

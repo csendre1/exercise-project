@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="inputs">
+    <p [hidden]="isAllCompleted">Please complete all fields.</p>
+    <span class="p-float-label p-input-icon-right">
+      <i class="pi pi-user"></i>
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        [(ngModel)]="user.username"
+      />
+      <label for="float-input">Username</label>
+    </span>
+    <span class="p-float-label">
+      <p-password
+        type="password"
+        id="float-password"
+        [toggleMask]="true"
+        [(ngModel)]="user.password"
+        [feedback]="false"
+      ></p-password>
+      <label for="float-password">Password</label>
+    </span>
+    <button
+      pButton
+      class="p-button-rounded p-button-success"
+      label="Log in"
+      (click)="login()"
+    ></button>
+    <i
+      class="pi pi-spin pi-spinner"
+      style="font-size: 2rem"
+      *ngIf="loggingIn"
+    ></i>
+    <p id="new-account">
+      Don't have an account register
+      <a routerLink="/login/register">here.</a>
+    </p>
+  </div>
+</div>

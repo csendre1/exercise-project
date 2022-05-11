@@ -1,0 +1,63 @@
+<p-dialog
+  [(visible)]="opened"
+  [formGroup]="newProductForm"
+  (onHide)="closeDialog()"
+>
+  <ng-template pTemplate="header"> {{ dialogHeader }} </ng-template>
+  <form class="new-product-form" [formGroup]="newProductForm">
+    <div class="field">
+      <label for="productName" class="block">Product name</label>
+      <input
+        id="productName"
+        type="text"
+        pInputText
+        formControlName="productName"
+      />
+    </div>
+    <div class="field">
+      <label for="serialNumber" class="block">Serial number</label>
+      <input
+        id="serialNumber"
+        type="text"
+        pInputText
+        formControlName="serialNumber"
+        placeholder="Length must be 11 long"
+        maxlength="11"
+      />
+    </div>
+    <div class="field">
+      <label for="description" class="block">Description</label>
+      <textarea
+        [rows]="5"
+        [cols]="30"
+        pInputTextarea
+        formControlName="description"
+      ></textarea>
+    </div>
+    <div class="field">
+      <label for="itemCondition" class="block">Product condition</label>
+      <p-dropdown
+        [options]="itemConditionList"
+        formControlName="itemCondition"
+        optionLabel="name"
+        optionValue="value"
+        placeholder="Select item condition"
+        [virtualScroll]="true"
+      ></p-dropdown>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button
+      class="p-button-raised p-button-success"
+      pButton
+      label="Confirm"
+      (click)="confirm()"
+    ></button>
+    <button
+      class="p-button-raised p-button-danger"
+      pButton
+      label="Cancel"
+      (click)="closeDialog()"
+    ></button>
+  </ng-template>
+</p-dialog>

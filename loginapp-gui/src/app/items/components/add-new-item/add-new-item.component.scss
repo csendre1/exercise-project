@@ -1,0 +1,20 @@
+
+.field{
+  display: flex;
+  flex-direction: column;
+  padding:0.6em;
+}
+
+.field > label {
+  margin-bottom: 1em;
+}
+
+.new-product-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+::ng-deep .p-dialog{
+  width: 30em;
+}
