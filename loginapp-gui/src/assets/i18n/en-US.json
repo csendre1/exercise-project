@@ -17,7 +17,16 @@
     "login-button": "Log in",
     "error" : "Please complete all fields.",
     "no-account": "Don't have an account register",
-    "here" : "here."
-  }
+    "here" : "here.",
+    "register":{
+      "title" : "Registration page",
+      "name": "Name",
+      "error-username":"Username is mandatory.",
+      "error-password":"Password is mandatory.",
+      "profile-picture": "Profile picture",
+      "register-button":"Register"
+    }
+  },
+  "cancel" : "Cancel"
 
 }

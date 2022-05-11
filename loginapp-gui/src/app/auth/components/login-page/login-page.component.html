@@ -21,12 +21,9 @@
       ></p-password>
       <label for="float-password">{{ "auth.password" | translate }}</label>
     </span>
-    <button
-      pButton
-      class="p-button-rounded p-button-success"
-      label="Log in"
-      (click)="login()"
-    ></button>
+    <button pButton class="p-button-rounded p-button-success" (click)="login()">
+      {{ "auth.login-button" | translate }}
+    </button>
     <i
       class="pi pi-spin pi-spinner"
       style="font-size: 2rem"

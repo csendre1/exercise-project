@@ -1,12 +1,16 @@
 <div class="container">
   <form class="reg-fields" [formGroup]="newUserForms">
-    <h1>Registration page</h1>
+    <h1>{{ "auth.register.title" | translate }}</h1>
     <div class="field">
-      <label for="name" class="block">Name</label>
+      <label for="name" class="block">{{
+        "auth.register.name" | translate
+      }}</label>
       <input id="name" type="text" pInputText formControlName="name" />
     </div>
     <div class="field">
-      <label for="username" class="block">Username</label>
+      <label for="username" class="block">{{
+        "auth.username" | translate
+      }}</label>
       <input
         id="username"
         type="text"
@@ -18,11 +22,13 @@
         id="username"
         class="p-error block"
         *ngIf="isErrorPresent('username')"
-        >Username is mandatory.</small
+        >{{ "auth.register.error-username" | translate }}</small
       >
     </div>
     <div class="field">
-      <label for="password" class="block">Password</label>
+      <label for="password" class="block">{{
+        "auth.password" | translate
+      }}</label>
       <input
         id="password"
         type="password"
@@ -35,11 +41,13 @@
         id="password"
         class="p-error block"
         *ngIf="isErrorPresent('password')"
-        >Password is mandatory.</small
+        >{{ "auth.register.error-password" | translate }}</small
       >
     </div>
     <div class="field">
-      <label for="profilePicture" class="block">Profile picture</label>
+      <label for="profilePicture" class="block">{{
+        "auth.register.profile-picture" | translate
+      }}</label>
       <p-fileUpload
         id="profilePicture"
         class="file-upload"
@@ -58,17 +66,19 @@
       <button
         pButton
         type="button"
-        label="Register"
         class="p-button-rounded p-button-success"
         (click)="register()"
-      ></button>
+      >
+        {{ "auth.register.register-button" | translate }}
+      </button>
       <button
         pButton
         type="button"
-        label="Cancel"
         class="p-button-rounded p-button-danger"
         (click)="cancel()"
-      ></button>
+      >
+        {{ "cancel" | translate }}
+      </button>
     </span>
   </form>
 </div>
