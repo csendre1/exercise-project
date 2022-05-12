@@ -1,0 +1,36 @@
+{
+  "title" : "Login-APP",
+  "welcome": "Bine ati venit",
+  "dashboard":{
+    "link": "Pagina de start"
+  },
+  "export" : "Exportare",
+  "products" : {
+    "link" : "Produse",
+    "title": "Lista de produse",
+    "new" : "Produs nou",
+    "name":"Numele produsului",
+    "serial-number" : "Număr de serie",
+    "description" : "Descriere",
+    "condition": "Starea produsului",
+    "added-time": "Data adăugri"
+
+  },
+  "auth": {
+    "username" : "Nume de utilizator",
+    "password" : "Parola",
+    "login-button": "Autentificare",
+    "error" : "Va rugam completati toate campurile.",
+    "no-account": "Da că nu aveți cont puteti înregistra ",
+    "here" : "aici.",
+    "register":{
+      "title" : "Pagina de înregistare",
+      "name": "Nume",
+      "error-username":"Numele de utilizator este obligatoriu.",
+      "error-password":"Parola este obligatoriu..",
+      "profile-picture": "Poză de profil",
+      "register-button":"Înregistare"
+    }
+  },
+  "cancel" : "Anulare"
+}
