@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -15,12 +16,19 @@ export class HeaderComponent implements OnInit {
 
   imageNotNull: boolean = false;
 
+  languages = [{ label: "English", value: 'en-US' }, { label: "Romanian", value: "ro" }]
+
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
     this.retrieveProfilePicture();
+  }
+
+  public changeLanguage(event: any) {
+    this.translateService.setDefaultLang(event.value)
   }
 
   private retrieveProfilePicture() {
