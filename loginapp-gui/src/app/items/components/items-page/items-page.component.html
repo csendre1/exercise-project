@@ -20,10 +20,11 @@
   </div>
   <div class="add-button">
     <button
-      pButton
       type="button"
-      icon="pi pi-plus"
+      pButton
       label="Add new"
+      class="p-button-raised"
+      icon="pi pi-plus"
       (click)="showDialog()"
     ></button>
   </div>
@@ -40,11 +41,11 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 3rem"></th>
-        <th>Item name</th>
-        <th>Serial number</th>
-        <th>Description</th>
-        <th>Item condition</th>
-        <th>Added time</th>
+        <th>{{ "products.name" | translate }}</th>
+        <th>{{ "products.serial-number" | translate }}</th>
+        <th>{{ "products.description" | translate }}</th>
+        <th>{{ "products.condition" | translate }}</th>
+        <th>{{ "products.added-time" | translate }}</th>
         <th></th>
       </tr>
     </ng-template>

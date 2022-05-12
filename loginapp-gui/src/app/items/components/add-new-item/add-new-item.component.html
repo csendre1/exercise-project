@@ -6,7 +6,9 @@
   <ng-template pTemplate="header"> {{ dialogHeader }} </ng-template>
   <form class="new-product-form" [formGroup]="newProductForm">
     <div class="field">
-      <label for="productName" class="block">Product name</label>
+      <label for="productName" class="block">{{
+        "products.title" | translate
+      }}</label>
       <input
         id="productName"
         type="text"
@@ -15,7 +17,9 @@
       />
     </div>
     <div class="field">
-      <label for="serialNumber" class="block">Serial number</label>
+      <label for="serialNumber" class="block">{{
+        "products.serial-number" | translate
+      }}</label>
       <input
         id="serialNumber"
         type="text"
@@ -26,7 +30,9 @@
       />
     </div>
     <div class="field">
-      <label for="description" class="block">Description</label>
+      <label for="description" class="block">{{
+        "products.description" | translate
+      }}</label>
       <textarea
         [rows]="5"
         [cols]="30"
@@ -35,7 +41,9 @@
       ></textarea>
     </div>
     <div class="field">
-      <label for="itemCondition" class="block">Product condition</label>
+      <label for="itemCondition" class="block">{{
+        "products.condition" | translate
+      }}</label>
       <p-dropdown
         [options]="itemConditionList"
         formControlName="itemCondition"
@@ -56,8 +64,9 @@
     <button
       class="p-button-raised p-button-danger"
       pButton
-      label="Cancel"
       (click)="closeDialog()"
-    ></button>
+    >
+      {{ "cancel" | translate }}
+    </button>
   </ng-template>
 </p-dialog>
