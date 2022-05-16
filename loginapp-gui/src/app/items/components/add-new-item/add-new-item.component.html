@@ -1,7 +1,7 @@
 <p-dialog
   [(visible)]="opened"
   [formGroup]="newProductForm"
-  (onHide)="closeDialog()"
+  (onHide)="closeDialog(null)"
 >
   <ng-template pTemplate="header"> {{ dialogHeader }} </ng-template>
   <form class="new-product-form" [formGroup]="newProductForm">
@@ -44,14 +44,20 @@
       <label for="itemCondition" class="block">{{
         "products.condition" | translate
       }}</label>
-      <p-dropdown
-        [options]="itemConditionList"
-        formControlName="itemCondition"
-        optionLabel="name"
-        optionValue="value"
-        placeholder="Select item condition"
-        [virtualScroll]="true"
-      ></p-dropdown>
+      <div>
+        <p-dropdown
+          [options]="itemConditionList"
+          formControlName="itemCondition"
+          optionLabel="name"
+          optionValue="value"
+          [placeholder]="
+            formItemConditionValue()
+              ? formItemConditionValue()
+              : 'Select item condition'
+          "
+          [virtualScroll]="true"
+        ></p-dropdown>
+      </div>
     </div>
   </form>
   <ng-template pTemplate="footer">
@@ -64,7 +70,7 @@
     <button
       class="p-button-raised p-button-danger"
       pButton
-      (click)="closeDialog()"
+      (click)="closeDialog(null)"
     >
       {{ "cancel" | translate }}
     </button>

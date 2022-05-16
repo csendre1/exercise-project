@@ -4,7 +4,6 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
 } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
@@ -34,12 +33,12 @@ export class JwtTokenInterceptor implements HttpInterceptor {
   private handleError(err: any) {
     if (err.status === 0) {
       this.messageService.add({ severity: 'error', summary: "Error", detail: "Failed to access the server." })
-    } else if (err.error.errorMessage) {
+    } else if (err.error) {
       this.messageService.add({ severity: 'error', summary: "Error", detail: err.error.errorMessage })
     }
     else {
-      console.log(err)
     }
+    console.log(err)
   }
 
 }

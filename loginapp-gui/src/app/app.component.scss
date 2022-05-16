@@ -1,7 +1,6 @@
 .main{
   display: grid;
   grid-template-columns: 10em ;
-  grid-template-rows: auto;
   grid-template-areas:
     "sidebar header"
     "sidebar content"

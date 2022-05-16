@@ -35,13 +35,14 @@ export class AddNewItemComponent implements OnInit {
   ngOnInit(): void { }
 
   ngOnChanges(): void {
-    if (this.product) {
-      this.buildForm();
-      this.newProductForm.setValue(this.createProductForm())
-    }
-    else {
-      this.buildForm();
-    }
+    this.buildForm();
+  }
+
+  public confirm() {
+    if (this.product)
+      this.confirmUpdate();
+    else
+      this.addProduct()
   }
 
   public confirmUpdate(): void {
@@ -56,28 +57,24 @@ export class AddNewItemComponent implements OnInit {
       this.itemService.updateProduct(this.product!).subscribe(updateProduct => {
         this.messageService.add({ severity: 'success', summary: 'Successfully updated', detail: 'The new product is updated.' })
         this.product!.itemCondition = updateProduct.itemCondition
-        this.closeDialog();
+        this.closeDialog(null);
       });
+    }
+    else {
+      this.messageService.add({ severity: 'error', summary: 'Error Updating', detail: 'Error occurred updating the product.' })
     }
   }
 
-  public confirm() {
-    if (this.product)
-      this.confirmUpdate();
-    else
-      this.addProduct()
-  }
-
-  public closeDialog(): void {
+  public closeDialog(toReturn: Product | null): void {
     this.opened = false;
-    this.dialogClosed.emit(null)
+    this.dialogClosed.emit(toReturn)
   }
 
   public addProduct(): void {
     if (this.newProductForm.valid) {
       this.itemService.addNewProduct(this.newProductForm.value).subscribe(addedProduct => {
         this.messageService.add({ severity: 'success', summary: 'Successfully saved', detail: 'The new product saved.' })
-        this.dialogClosed.emit(addedProduct)
+        this.closeDialog(addedProduct);
       });
     }
     else {
@@ -85,23 +82,17 @@ export class AddNewItemComponent implements OnInit {
     }
   }
 
-  private buildForm() {
+  private buildForm(): void {
     this.newProductForm = this.formBuilder.group({
-      productName: ['', Validators.required],
-      serialNumber: ['', Validators.pattern('^[0-9]{11}$')],
-      description: [''],
-      itemCondition: ['']
+      productName: [this.product?.productName, Validators.required],
+      serialNumber: [this.product?.serialNumber, Validators.pattern('^[0-9]{11}$')],
+      description: [this.product?.description],
+      itemCondition: [this.product?.itemCondition]
     })
   }
 
-  private createProductForm(): ProductForm {
-    return {
-      productName: this.product?.productName!,
-      description: this.product?.description!,
-      serialNumber: this.product?.serialNumber!,
-      itemCondition: { name: this.product?.itemCondition.toString()!, value: this.product?.itemCondition.valueOf()! }
-    }
-
+  public formItemConditionValue() {
+    return this.newProductForm.controls['itemCondition'].value;
   }
 
 }

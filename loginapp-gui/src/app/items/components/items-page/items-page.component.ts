@@ -35,8 +35,15 @@ export class ItemsPageComponent implements OnInit {
     this.loadProducts();
   }
 
-  public showDialog(): void {
+  public openAddDialog(): void {
+    this.productToUpgrade = null;
     this.displayDialog = true;
+  }
+
+  public closedDialog(event: Product | null) {
+    this.displayDialog = false
+    if (event != null)
+      this.productList.push(event)
   }
 
   public deleteProduct(id: number): void {
@@ -73,12 +80,6 @@ export class ItemsPageComponent implements OnInit {
     this.itemService.getProducts().subscribe(items => {
       this.productList = items;
     })
-  }
-
-  closedDialog(event: Product | null) {
-    this.displayDialog = false
-    if (event != null)
-      this.productList.push(event)
   }
 
 }
