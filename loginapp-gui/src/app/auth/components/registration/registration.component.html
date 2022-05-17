@@ -67,18 +67,16 @@
         pButton
         type="button"
         class="p-button-rounded p-button-success"
+        [label]="'auth.register.register-button' | translate"
         (click)="register()"
-      >
-        {{ "auth.register.register-button" | translate }}
-      </button>
+      ></button>
       <button
         pButton
         type="button"
+        [label]="'cancel' | translate"
         class="p-button-rounded p-button-danger"
         (click)="cancel()"
-      >
-        {{ "cancel" | translate }}
-      </button>
+      ></button>
     </span>
   </form>
 </div>

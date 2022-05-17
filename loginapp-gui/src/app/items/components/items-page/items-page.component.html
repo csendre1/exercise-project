@@ -6,7 +6,7 @@
       (click)="exportProducts()"
       type="button"
       icon="pi pi-upload"
-      label="Export"
+      [label]="'export' | translate"
     ></button>
   </div>
   <div class="export-type">
@@ -22,7 +22,7 @@
     <button
       type="button"
       pButton
-      label="Add new"
+      [label]="'products.new' | translate"
       class="p-button-raised"
       icon="pi pi-plus"
       (click)="openAddDialog()"
@@ -32,8 +32,10 @@
     class="table"
     [value]="productList"
     [paginator]="true"
-    [rows]="10"
-    [rowsPerPageOptions]="[3, 10, 25, 50]"
+    [rows]="5"
+    [scrollable]="true"
+    scrollHeight="50vh"
+    [rowsPerPageOptions]="[5, 10, 25, 50]"
     [resizableColumns]="true"
     [rowHover]="true"
     [(selection)]="selectedProductList"

@@ -52,11 +52,15 @@
           optionValue="value"
           [placeholder]="
             formItemConditionValue()
-              ? formItemConditionValue()
-              : 'Select item condition'
+              ? (formItemConditionValue() | translate)
+              : ('products.placeholder' | translate)
           "
           [virtualScroll]="true"
-        ></p-dropdown>
+        >
+          <ng-template pTemplate="item" let-condition>
+            <div>{{ condition.name | translate }}</div>
+          </ng-template>
+        </p-dropdown>
       </div>
     </div>
   </form>
@@ -64,15 +68,14 @@
     <button
       class="p-button-raised p-button-success"
       pButton
-      label="Confirm"
+      [label]="'confirm' | translate"
       (click)="confirm()"
     ></button>
     <button
       class="p-button-raised p-button-danger"
       pButton
       (click)="closeDialog(null)"
-    >
-      {{ "cancel" | translate }}
-    </button>
+      [label]="'cancel' | translate"
+    ></button>
   </ng-template>
 </p-dialog>

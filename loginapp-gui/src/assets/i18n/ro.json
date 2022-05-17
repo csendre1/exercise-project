@@ -13,7 +13,8 @@
     "serial-number" : "Număr de serie",
     "description" : "Descriere",
     "condition": "Starea produsului",
-    "added-time": "Data adăugri"
+    "added-time": "Data adăugri",
+    "placeholder":"Selectati starea produsului"
 
   },
   "auth": {
@@ -32,5 +33,10 @@
       "register-button":"Înregistare"
     }
   },
-  "cancel" : "Anulare"
+  "cancel" : "Anulare",
+  "confirm": "Confirmare",
+  "NEW" : "NOU",
+  "GOOD" : "BUN",
+  "BAD" : "RĂU",
+  "BROKEN" : "STRICAT"
 }

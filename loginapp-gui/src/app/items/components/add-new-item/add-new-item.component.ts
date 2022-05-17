@@ -30,6 +30,8 @@ export class AddNewItemComponent implements OnInit {
 
   addClicked: boolean = true;
 
+  selectedItemCondition: ProductConditionSelect | null = null
+
   constructor(private formBuilder: FormBuilder, private itemService: ItemService, private messageService: MessageService) { }
 
   ngOnInit(): void { }

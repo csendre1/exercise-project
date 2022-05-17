@@ -13,7 +13,8 @@
     "serial-number" : "Serial number",
     "description" : "Description",
     "condition": "Product condition",
-    "added-time": "Added time"
+    "added-time": "Added time",
+    "placeholder":"Select the product condition"
 
   },
   "auth": {
@@ -32,5 +33,6 @@
       "register-button":"Register"
     }
   },
-  "cancel" : "Cancel"
+  "cancel" : "Cancel",
+  "confirm" : "Confirm"
 }
