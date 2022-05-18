@@ -18,4 +18,6 @@ public interface ProductService {
     ResponseEntity<Product> updateProduct(Product product);
 
     ResponseEntity<Response<String>> delete(Long id);
+
+    List<Product> findAllPerPage(int page, int maxNum);
 }

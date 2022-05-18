@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -102,5 +104,13 @@ public class ProductServiceImpl implements ProductService {
 
     private boolean checkUniqueSerialNumber(String serialNumber) {
         return productRepository.findBySerialNumber(serialNumber) == null;
+    }
+
+    @Override
+    public List<Product> findAllPerPage(int pageNum, int maxNum) {
+
+        Pageable page = PageRequest.of(pageNum, maxNum);
+
+        return productRepository.findAll(page).getContent();
     }
 }

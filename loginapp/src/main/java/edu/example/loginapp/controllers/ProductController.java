@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.example.loginapp.dto.ProductDTO;
@@ -44,5 +45,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Response<String>> delete(@PathVariable Long id) {
         return productService.delete(id);
+    }
+
+    @GetMapping("/paging")
+    public List<Product> findAllPerPage(@RequestParam int page, @RequestParam int maxNum) {
+        return productService.findAllPerPage(page, maxNum);
     }
 }
