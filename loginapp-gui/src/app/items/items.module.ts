@@ -6,18 +6,20 @@ import { ItemsPageComponent } from './components/items-page/items-page.component
 import { DesignModule } from '../design/design.module';
 import { AddNewItemComponent } from './components/add-new-item/add-new-item.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
   declarations: [
     ItemsPageComponent,
-    AddNewItemComponent
+    AddNewItemComponent,
+    PaginatorComponent
   ],
   imports: [
     CommonModule,
     ItemsRoutingModule,
     DesignModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
 export class ItemsModule { }

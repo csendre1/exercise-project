@@ -27,4 +27,10 @@ export class ItemService {
   public updateProduct(product: Product): Observable<Product> {
     return this.httpClient.put<Product>(PRODUCT_URL, product);
   }
+
+  public paging(pageNum: number, itemsPerPage: number) {
+    return this.httpClient.get<Product[]>(`${PRODUCT_URL}/paging`, {
+      params: { page: pageNum, maxNum: itemsPerPage }
+    })
+  }
 }

@@ -32,7 +32,7 @@ export class ItemsPageComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+    //this.loadProducts();
   }
 
   public openAddDialog(): void {
@@ -57,6 +57,15 @@ export class ItemsPageComponent implements OnInit {
         this.messageService.add({ severity: "info", summary: 'Delete canceled.' })
       }
     })
+  }
+
+  public filterProducts(column: string, value: string): void {
+
+  }
+
+  public refreshPage(productList: any) {
+    console.log(productList)
+    this.productList = productList
   }
 
   public updateProduct(product: Product): void {

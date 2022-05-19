@@ -34,5 +34,9 @@
     }
   },
   "cancel" : "Cancel",
-  "confirm" : "Confirm"
+  "confirm" : "Confirm",
+  "NEW" : "NEW",
+  "GOOD" : "GOOD",
+  "BAD" : "BAD",
+  "BROKEN" : "BROKEN"
 }

@@ -1,0 +1,9 @@
+<div class="container">
+  <button (click)="prevButton()">Prev</button>
+  <ul *ngFor="let i of pages">
+    <li>
+      <button>{{ i }}</button>
+    </li>
+  </ul>
+  <button (click)="nextButton()">Next</button>
+</div>
