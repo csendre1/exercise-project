@@ -51,4 +51,10 @@ public class ProductController {
     public List<Product> findAllPerPage(@RequestParam int page, @RequestParam int maxNum) {
         return productService.findAllPerPage(page, maxNum);
     }
+
+    @GetMapping("/numberOfProducts")
+    public long getMethodName() {
+        return this.productService.numberOfProducts();
+    }
+
 }

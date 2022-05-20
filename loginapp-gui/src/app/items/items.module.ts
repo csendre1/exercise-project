@@ -7,13 +7,15 @@ import { DesignModule } from '../design/design.module';
 import { AddNewItemComponent } from './components/add-new-item/add-new-item.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 @NgModule({
   declarations: [
     ItemsPageComponent,
     AddNewItemComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,

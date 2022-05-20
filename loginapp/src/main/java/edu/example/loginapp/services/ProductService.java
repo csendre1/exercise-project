@@ -20,4 +20,6 @@ public interface ProductService {
     ResponseEntity<Response<String>> delete(Long id);
 
     List<Product> findAllPerPage(int page, int maxNum);
+
+    long numberOfProducts();
 }

@@ -113,4 +113,9 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.findAll(page).getContent();
     }
+
+    @Override
+    public long numberOfProducts() {
+        return this.productRepository.count();
+    }
 }
