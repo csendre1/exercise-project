@@ -31,11 +31,8 @@
   <p-table
     class="table"
     [value]="productList"
-    [paginator]="true"
-    [rows]="5"
     [scrollable]="true"
     scrollHeight="50vh"
-    [rowsPerPageOptions]="[5, 10, 25, 50]"
     [resizableColumns]="true"
     [rowHover]="true"
     [(selection)]="selectedProductList"
@@ -107,7 +104,7 @@
     </ng-template>
 
     <ng-template pTemplate="summary">
-      <app-paginator (pageLoaded)="refreshPage($event)"></app-paginator>
+      <app-paginator (pageLoaded)="pageLoaded($event)"></app-paginator>
     </ng-template>
   </p-table>
 </div>

@@ -32,7 +32,6 @@ export class ItemsPageComponent implements OnInit {
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    //this.loadProducts();
   }
 
   public openAddDialog(): void {
@@ -63,8 +62,7 @@ export class ItemsPageComponent implements OnInit {
 
   }
 
-  public refreshPage(productList: any) {
-    console.log(productList)
+  public pageLoaded(productList: any) {
     this.productList = productList
   }
 
@@ -82,12 +80,6 @@ export class ItemsPageComponent implements OnInit {
     this.itemService.deleteProduct(id).subscribe(resp => {
       this.productList = this.productList.filter(val => val.id != id)
       this.messageService.add({ severity: "success", summary: "Delete product with success" })
-    })
-  }
-
-  private loadProducts(): void {
-    this.itemService.getProducts().subscribe(items => {
-      this.productList = items;
     })
   }
 

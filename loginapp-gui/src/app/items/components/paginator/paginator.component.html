@@ -1,9 +1,30 @@
 <div class="container">
-  <button (click)="prevButton()">Prev</button>
+  <button
+    type="button"
+    pButton
+    pRipple
+    icon="pi pi-angle-left"
+    class="p-button-raised p-button-text"
+    (click)="navigateOnPages(currentPage - 1)"
+    [disabled]="isFirstPage"
+  ></button>
   <ul *ngFor="let i of pages">
     <li>
-      <button>{{ i }}</button>
+      <button
+        (click)="navigateOnPages(i - 1)"
+        pButton
+        class="p-button-rounded"
+        label="{{ i }}"
+      ></button>
     </li>
   </ul>
-  <button (click)="nextButton()">Next</button>
+  <button
+    type="button"
+    pButton
+    pRipple
+    icon="pi pi-angle-right"
+    class="p-button-raised p-button-text"
+    (click)="navigateOnPages(currentPage + 1)"
+    [disabled]="isLastPage"
+  ></button>
 </div>

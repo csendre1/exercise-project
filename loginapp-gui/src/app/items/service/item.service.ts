@@ -33,4 +33,8 @@ export class ItemService {
       params: { page: pageNum, maxNum: itemsPerPage }
     })
   }
+
+  public getNumberOfProducts() {
+    return this.httpClient.get<number>(`${PRODUCT_URL}/numberOfProducts`)
+  }
 }

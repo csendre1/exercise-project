@@ -13,38 +13,65 @@ export class PaginatorComponent implements OnInit {
 
   @Output() pageLoaded: EventEmitter<Product[]> = new EventEmitter<Product[]>();
 
-  pages: number[] = [1, 2, 3, 4]
+  pages: number[] = []
 
-  private currentPage: number = 0;
+  isFirstPage: boolean = true;
 
-  private lastPage: number = 0;
+  isLastPage: boolean = false;
+
+  currentPage: number = 0;
+
+  private numberOfProducts: number = 0;
 
   private itemPerPage = 3;
 
   constructor(private productService: ItemService) { }
 
   ngOnInit(): void {
-    //TODO: get last page
-    this.goToPage()
+    this.initializeNumberOfPages();
+    this.loadPage()
   }
 
-  private goToPage() {
-    //TODO: get the products of the page from the backend
+  public navigateOnPages(toPage: number) {
+    this.currentPage = toPage;
+    this.checkFinalPages()
+    this.loadPage()
+  }
+
+  private initializeNumberOfPages() {
+    this.productService.getNumberOfProducts().subscribe(num => {
+      this.numberOfProducts = num;
+      this.calculateNumberOfPages()
+    }, err => {
+      console.log(err)
+    })
+  }
+
+  private loadPage() {
     this.productService.paging(this.currentPage, this.itemPerPage).subscribe(resp => {
-      console.log(resp)
       this.pageLoaded.emit(resp);
     })
   }
 
-  public nextButton() {
-    this.currentPage += 1;
-    this.goToPage()
+  private calculateNumberOfPages() {
+    let a = this.numberOfProducts / this.itemPerPage
+    if (this.numberOfProducts % this.itemPerPage != 0)
+      a += 1
+    for (let i = 1; i <= a; ++i)
+      this.pages.push(i)
   }
 
-  public prevButton() {
-    this.currentPage -= 1;
-    this.goToPage()
+  private checkFinalPages(): void {
+    this.isFirstPage = this.checkIfFirstPage();
+    this.isLastPage = this.checkIfLastPage();
   }
 
+  private checkIfLastPage(): boolean {
+    return this.currentPage + 1 == this.pages[this.pages.length - 1];
+  }
+
+  private checkIfFirstPage(): boolean {
+    return this.currentPage == 0;
+  }
 
 }
