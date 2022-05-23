@@ -16,6 +16,7 @@ import edu.example.loginapp.exception.NotUniqueException;
 import edu.example.loginapp.model.Product;
 import edu.example.loginapp.model.Response;
 import edu.example.loginapp.repositories.IProductRepository;
+import edu.example.loginapp.services.FilterService;
 import edu.example.loginapp.services.ProductService;
 import lombok.extern.log4j.Log4j2;
 
@@ -25,6 +26,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private IProductRepository productRepository;
+
+    @Autowired
+    private FilterService filterService;
 
     @Override
     public ResponseEntity<Product> saveProduct(ProductDTO newProduct) {
@@ -118,4 +122,10 @@ public class ProductServiceImpl implements ProductService {
     public long numberOfProducts() {
         return this.productRepository.count();
     }
+
+    @Override
+    public List<Product> filterValues(int page, int maxNum, String filterValue, String column) {
+        return filterService.filter(filterValue, column, Product.class);
+    }
+
 }

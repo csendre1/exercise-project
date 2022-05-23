@@ -22,4 +22,6 @@ public interface ProductService {
     List<Product> findAllPerPage(int page, int maxNum);
 
     long numberOfProducts();
+
+    List<Product> filterValues(int page, int maxNum, String filterValue, String column);
 }
