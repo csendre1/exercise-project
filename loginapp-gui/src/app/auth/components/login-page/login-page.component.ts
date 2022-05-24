@@ -45,6 +45,7 @@ export class LoginPageComponent implements OnInit {
       this.loggingIn = false
       this.router.navigate(['/dashboard']);
     }, (err: HttpErrorResponse) => {
+      console.log(err)
       this.loggingIn = false
     });
   }

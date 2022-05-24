@@ -11,7 +11,13 @@ export class PaginatorComponent implements OnInit {
 
   @Input() itemPerPageList: number[] = []
 
+  @Input() column: string = ''
+
+  @Input() filter: EventEmitter<string> = new EventEmitter()
+
   @Output() pageLoaded: EventEmitter<Product[]> = new EventEmitter<Product[]>();
+
+  filterValue: string = ''
 
   pages: number[] = []
 
@@ -30,6 +36,11 @@ export class PaginatorComponent implements OnInit {
   ngOnInit(): void {
     this.initializeNumberOfPages();
     this.loadPage()
+    this.filter.subscribe(val => {
+      console.log(val)
+      this.filterValue = val;
+      this.loadPage();
+    })
   }
 
   public navigateOnPages(toPage: number) {
@@ -48,7 +59,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   private loadPage() {
-    this.productService.paging(this.currentPage, this.itemPerPage).subscribe(resp => {
+    this.productService.filter(this.currentPage, this.itemPerPage, this.filterValue, this.column).subscribe(resp => {
       this.pageLoaded.emit(resp);
     })
   }

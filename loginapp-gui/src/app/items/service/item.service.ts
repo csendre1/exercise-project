@@ -37,4 +37,10 @@ export class ItemService {
   public getNumberOfProducts() {
     return this.httpClient.get<number>(`${PRODUCT_URL}/numberOfProducts`)
   }
+
+  public filter(pageNum: number, itemsPerPage: number, value: string, column: string) {
+    return this.httpClient.get<Product[]>(`${PRODUCT_URL}/filter`, {
+      params: { pageNum: pageNum, maxNum: itemsPerPage, value: value, column: column }
+    })
+  }
 }

@@ -23,6 +23,11 @@ export class ItemsPageComponent implements OnInit {
 
   exporter?: IExport;
 
+  doFilter: EventEmitter<string> = new EventEmitter()
+
+  filteredValue: string = ''
+
+  column: string = ''
   productToUpgrade: Product | null = null;
 
   exportTypes = [{ name: 'PDF', value: new ExportPDF() }, { name: 'EXCEL', value: new ExportEXCEL() }]
@@ -58,8 +63,10 @@ export class ItemsPageComponent implements OnInit {
     })
   }
 
-  public filterProducts(column: string, value: string): void {
-
+  public filterProducts(value: string, column: string): void {
+    this.filteredValue = value;
+    this.column = column
+    this.doFilter.emit(value)
   }
 
   public pageLoaded(productList: any) {
@@ -69,6 +76,10 @@ export class ItemsPageComponent implements OnInit {
   public updateProduct(product: Product): void {
     this.productToUpgrade = product
     this.displayDialog = true;
+  }
+
+  public filtered(value: string) {
+
   }
 
 

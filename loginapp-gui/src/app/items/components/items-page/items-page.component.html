@@ -50,7 +50,10 @@
       <tr>
         <th></th>
         <th>
-          <p-columnFilter type="text" field="name"></p-columnFilter>
+          <app-filter
+            column="name"
+            (filterValue)="filterProducts($event, 'productName')"
+          ></app-filter>
         </th>
         <th>
           <p-columnFilter type="text" field="serial-number"></p-columnFilter>
@@ -104,7 +107,11 @@
     </ng-template>
 
     <ng-template pTemplate="summary">
-      <app-paginator (pageLoaded)="pageLoaded($event)"></app-paginator>
+      <app-paginator
+        (pageLoaded)="pageLoaded($event)"
+        [column]="column"
+        [filter]="doFilter"
+      ></app-paginator>
     </ng-template>
   </p-table>
 </div>
@@ -114,6 +121,7 @@
   [baseZIndex]="10000"
   rejectButtonStyleClass="p-button-text"
 ></p-confirmDialog>
+
 <app-add-new-item
   [opened]="displayDialog"
   [product]="productToUpgrade"

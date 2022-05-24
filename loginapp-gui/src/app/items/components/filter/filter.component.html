@@ -1,1 +1,8 @@
-<p>filter works!</p>
+<div>
+  <input
+    type="text"
+    pInputText
+    (input)="filter($event)"
+    [(ngModel)]="filterValueField"
+  />
+</div>
