@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Product, ProductConditionList, ProductConditionSelect, ProductForm } from 'src/app/models/product';
+import { Product, ProductCondition, ProductConditionList, ProductConditionSelect, ProductForm } from 'src/app/models/product';
 import { IExport } from 'src/app/utils/export';
 import { ExportEXCEL } from 'src/app/utils/export/excel.export';
 import { ExportPDF } from 'src/app/utils/export/pdf.export';
@@ -17,6 +17,10 @@ export class ItemsPageComponent implements OnInit {
 
   productList: Product[] = []
 
+  itemConditionList: ProductConditionSelect[] = ProductConditionList;
+
+  filteredItemCondition: ProductCondition | null = null;
+
   selectedProductList: Product[] = []
 
   displayDialog: boolean = false;
@@ -28,6 +32,7 @@ export class ItemsPageComponent implements OnInit {
   filteredValue: string = ''
 
   column: string = ''
+
   productToUpgrade: Product | null = null;
 
   exportTypes = [{ name: 'PDF', value: new ExportPDF() }, { name: 'EXCEL', value: new ExportEXCEL() }]
@@ -78,8 +83,8 @@ export class ItemsPageComponent implements OnInit {
     this.displayDialog = true;
   }
 
-  public filtered(value: string) {
-
+  public filter(value: string) {
+    this.filterProducts(value, "itemCondition");
   }
 
 

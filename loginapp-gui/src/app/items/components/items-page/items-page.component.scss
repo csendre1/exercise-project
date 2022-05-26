@@ -11,7 +11,7 @@ $text_color : #32322C;
 .grid{
   display: grid;
   grid-template-columns: 0.12fr 1fr 0.15fr;
-  grid-row-gap: 2em;
+  grid-row-gap: 1em;
   width: 96%;
   height: 100%;
   margin-left: 2em;
@@ -23,6 +23,7 @@ h1{
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
 .export-button{
   grid-row: 2;
   grid-column: 1;
@@ -43,6 +44,14 @@ h1{
  grid-row: 3;
  grid-column-start: 1;
  grid-column-end: 4;
- width: 98%;
+ width: 100%;
+ z-index: 1;
 }
 
+th,td{
+  justify-content: center;
+  max-width: 160px;
+}
+::ng-deep .p-datatable-resizable .p-datatable-thead>tr>th{
+  overflow: visible !important;
+}

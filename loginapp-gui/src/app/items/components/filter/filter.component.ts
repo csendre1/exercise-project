@@ -8,8 +8,6 @@ import { ItemService } from '../../service/item.service';
 })
 export class FilterComponent implements OnInit {
 
-  @Input() column: string = ''
-
   @Output() filterValue: EventEmitter<string> = new EventEmitter<string>()
 
   filterValueField: string = ''

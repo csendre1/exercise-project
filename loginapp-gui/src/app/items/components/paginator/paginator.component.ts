@@ -17,8 +17,6 @@ export class PaginatorComponent implements OnInit {
 
   @Output() pageLoaded: EventEmitter<Product[]> = new EventEmitter<Product[]>();
 
-  filterValue: string = ''
-
   pages: number[] = []
 
   isFirstPage: boolean = true;
@@ -27,26 +25,40 @@ export class PaginatorComponent implements OnInit {
 
   currentPage: number = 0;
 
-  private numberOfProducts: number = 0;
+  numberOfProducts: number = 0;
 
-  private itemPerPage = 3;
+  itemPerPage = 3;
+
+  private filterValue: string = ''
 
   constructor(private productService: ItemService) { }
 
   ngOnInit(): void {
     this.initializeNumberOfPages();
     this.loadPage()
-    this.filter.subscribe(val => {
-      console.log(val)
-      this.filterValue = val;
-      this.loadPage();
-    })
+    this.startFiltering()
   }
 
   public navigateOnPages(toPage: number) {
     this.currentPage = toPage;
     this.checkFinalPages()
     this.loadPage()
+  }
+
+  public displayedItems(): number {
+    const num = (this.currentPage + 1) * this.itemPerPage;
+    if (num <= this.numberOfProducts)
+      return num
+
+    return this.numberOfProducts
+
+  }
+
+  private startFiltering() {
+    this.filter.subscribe(val => {
+      this.filterValue = val;
+      this.loadPage();
+    })
   }
 
   private initializeNumberOfPages() {
