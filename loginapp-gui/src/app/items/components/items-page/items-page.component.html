@@ -30,7 +30,6 @@
   </div>
   <p-table
     class="table"
-    [autoLayout]="true"
     [value]="productList"
     [scrollable]="true"
     scrollHeight="50vh"
@@ -41,7 +40,9 @@
     <ng-template pTemplate="header">
       <tr>
         <th class="select"></th>
-        <th>{{ "products.name" | translate }}</th>
+        <th pSortableColumn>
+          {{ "products.name" | translate }} <i class="pi pi-arrow-up"></i>
+        </th>
         <th>{{ "products.serial-number" | translate }}</th>
         <th>{{ "products.description" | translate }}</th>
         <th>{{ "products.condition" | translate }}</th>
@@ -52,22 +53,22 @@
         <th class="select">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th>
+        <th class="filter">
           <app-filter
             (filterValue)="filterProducts($event, 'productName')"
           ></app-filter>
         </th>
-        <th>
+        <th class="filter">
           <app-filter
             (filterValue)="filterProducts($event, 'serialNumber')"
           ></app-filter>
         </th>
-        <th>
+        <th class="filter">
           <app-filter
             (filterValue)="filterProducts($event, 'description')"
           ></app-filter>
         </th>
-        <th>
+        <th class="dropdown-filter">
           <p-dropdown
             class="dropdown"
             [(ngModel)]="filteredItemCondition"
@@ -85,7 +86,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr>
-        <td>
+        <td class="select">
           <p-tableCheckbox [value]="product"></p-tableCheckbox>
         </td>
         <td>{{ product.productName }}</td>

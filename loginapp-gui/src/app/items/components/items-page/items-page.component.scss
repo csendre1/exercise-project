@@ -44,14 +44,18 @@ h1{
  grid-row: 3;
  grid-column-start: 1;
  grid-column-end: 4;
- width: 100%;
- z-index: 1;
+ width: auto;
 }
 
-th,td{
-  justify-content: center;
-  max-width: 160px;
-}
-::ng-deep .p-datatable-resizable .p-datatable-thead>tr>th{
+// th{
+//   justify-content: center;
+// }
+
+.dropdown-filter{
   overflow: visible !important;
+}
+
+
+.select{
+  max-width: 3rem;
 }
