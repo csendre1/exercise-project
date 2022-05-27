@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Attachment } from 'src/app/models/attachment';
+import { GlobalMessageService } from 'src/app/utils/service/global-message.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private msgService: MessageService) { }
+    private messageService: GlobalMessageService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -30,12 +31,12 @@ export class RegistrationComponent implements OnInit {
   public register(): void {
     if (this.newUserForms.valid) {
       this.authService.register(this.newUserForms.value, this.newAttachment?.data!).subscribe(resp => {
-        this.msgService.add({ severity: "success", detail: "Registration was successful." })
+        this.messageService.success("Registration was successful.")
         this.router.navigate(['/login'])
       });
     }
     else {
-      this.msgService.add({ severity: "error", detail: "The fields are not completed correctly." })
+      this.messageService.error("The fields are not completed correctly.")
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Product, ProductConditionList, ProductConditionSelect, ProductForm } from 'src/app/models/product';
+import { GlobalMessageService } from 'src/app/utils/service/global-message.service';
 import { ItemService } from '../../service/item.service';
 
 const NEW_PRODUCT_HEADER: string = "Add new product";
@@ -32,7 +33,7 @@ export class AddNewItemComponent implements OnInit {
 
   selectedItemCondition: ProductConditionSelect | null = null
 
-  constructor(private formBuilder: FormBuilder, private itemService: ItemService, private messageService: MessageService) { }
+  constructor(private formBuilder: FormBuilder, private itemService: ItemService, private messageService: GlobalMessageService) { }
 
   ngOnInit(): void { }
 
@@ -57,13 +58,13 @@ export class AddNewItemComponent implements OnInit {
       this.product!.itemCondition = updateProduct.itemCondition
 
       this.itemService.updateProduct(this.product!).subscribe(updateProduct => {
-        this.messageService.add({ severity: 'success', summary: 'Successfully updated', detail: 'The new product is updated.' })
+        this.messageService.success('The new product is updated.')
         this.product!.itemCondition = updateProduct.itemCondition
         this.closeDialog(null);
       });
     }
     else {
-      this.messageService.add({ severity: 'error', summary: 'Error Updating', detail: 'Error occurred updating the product.' })
+      this.messageService.error('Error occurred updating the product.')
     }
   }
 
@@ -75,12 +76,12 @@ export class AddNewItemComponent implements OnInit {
   public addProduct(): void {
     if (this.newProductForm.valid) {
       this.itemService.addNewProduct(this.newProductForm.value).subscribe(addedProduct => {
-        this.messageService.add({ severity: 'success', summary: 'Successfully saved', detail: 'The new product saved.' })
+        this.messageService.success('The new product saved.')
         this.closeDialog(addedProduct);
       });
     }
     else {
-      this.messageService.add({ severity: 'error', summary: 'Invalid form', detail: 'The new product info is not completed correctly.' })
+      this.messageService.error('The new product info is not completed correctly.')
     }
   }
 

@@ -5,13 +5,14 @@ import { Product, ProductCondition, ProductConditionList, ProductConditionSelect
 import { IExport } from 'src/app/utils/export';
 import { ExportEXCEL } from 'src/app/utils/export/excel.export';
 import { ExportPDF } from 'src/app/utils/export/pdf.export';
+import { GlobalMessageService } from 'src/app/utils/service/global-message.service';
 import { ItemService } from '../../service/item.service';
 
 @Component({
   selector: 'app-items-page',
   templateUrl: './items-page.component.html',
   styleUrls: ['./items-page.component.scss'],
-  providers: [MessageService, ConfirmationService]
+  providers: [ConfirmationService]
 })
 export class ItemsPageComponent implements OnInit {
 
@@ -38,7 +39,7 @@ export class ItemsPageComponent implements OnInit {
   exportTypes = [{ name: 'PDF', value: new ExportPDF() }, { name: 'EXCEL', value: new ExportEXCEL() }]
 
   constructor(private itemService: ItemService,
-    private messageService: MessageService,
+    private messageService: GlobalMessageService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -63,7 +64,7 @@ export class ItemsPageComponent implements OnInit {
         this.onAcceptDelete(id)
       },
       reject: () => {
-        this.messageService.add({ severity: "info", summary: 'Delete canceled.' })
+        this.messageService.info("Delete canceled")
       }
     })
   }
@@ -95,7 +96,7 @@ export class ItemsPageComponent implements OnInit {
   private onAcceptDelete(id: number) {
     this.itemService.deleteProduct(id).subscribe(resp => {
       this.productList = this.productList.filter(val => val.id != id)
-      this.messageService.add({ severity: "success", summary: "Delete product with success" })
+      this.messageService.success("Delete product with success")
     })
   }
 

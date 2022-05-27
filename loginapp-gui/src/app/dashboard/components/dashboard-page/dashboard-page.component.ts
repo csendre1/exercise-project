@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { GlobalMessageService } from 'src/app/utils/service/global-message.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -8,10 +9,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private messageService: GlobalMessageService) { }
 
   ngOnInit(): void {
     this.authService.loggedIn.emit(true)
+    this.messageService.success("User logged in.")
   }
 
 }

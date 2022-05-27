@@ -8,13 +8,14 @@ import {
 import { catchError, Observable, of } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { MessageService } from 'primeng/api';
+import { GlobalMessageService } from '../utils/service/global-message.service';
 
 const BEARER = 'Bearer ';
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService,
-    private messageService: MessageService) { }
+    private messageService: GlobalMessageService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (this.authService.isLoggedIn()) {
@@ -31,14 +32,13 @@ export class JwtTokenInterceptor implements HttpInterceptor {
   }
 
   private handleError(err: any) {
+    let msg = "An error occurred."
+    console.error(err)
     if (err.status === 0) {
-      this.messageService.add({ severity: 'error', summary: "Error", detail: "Failed to access the server." })
+      msg = "Failed to access the server."
     } else if (err.error) {
-      this.messageService.add({ severity: 'error', summary: "Error", detail: err.error.errorMessage })
+      msg = err.error.errorMessage
     }
-    else {
-    }
-    console.log(err)
+    this.messageService.error(msg)
   }
-
 }

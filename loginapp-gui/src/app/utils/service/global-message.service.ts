@@ -13,14 +13,14 @@ export class GlobalMessageService {
   }
 
   public error(detailMsg: string, summary?: string): void {
-    this.messageService.add({ severity: 'success', summary: summary || "Error", detail: detailMsg })
+    this.messageService.add({ severity: 'error', summary: summary || "Error", detail: detailMsg })
   }
 
   public warning(detailMsg: string, summary?: string): void {
-    this.messageService.add({ severity: 'success', summary: summary || "Warning", detail: detailMsg })
+    this.messageService.add({ severity: 'warn', summary: summary || "Warning", detail: detailMsg })
   }
 
   public info(msg: string, summary?: string): void {
-    this.messageService.add({ severity: 'success', summary: summary || "Info", detail: msg })
+    this.messageService.add({ severity: 'info', summary: summary || "Info", detail: msg })
   }
 }
