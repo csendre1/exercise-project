@@ -1,4 +1,4 @@
-package edu.example.loginapp.services.impl;
+package edu.example.loginapp.products;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -10,19 +10,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import edu.example.loginapp.dto.ProductDTO;
 import edu.example.loginapp.exception.NotUniqueException;
 import edu.example.loginapp.model.Product;
 import edu.example.loginapp.model.Response;
-import edu.example.loginapp.repositories.IProductRepository;
 import edu.example.loginapp.services.FilterService;
-import edu.example.loginapp.services.ProductService;
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
-public class ProductServiceImpl implements ProductService {
+public class ProductService implements IProductService {
 
     @Autowired
     private IProductRepository productRepository;
@@ -125,7 +124,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> filterValues(int page, int maxNum, String filterValue, String column) {
-        return filterService.filter(filterValue, column, Product.class);
+
+        return checkFilterValue(filterValue, column)
+                ? filterService.filter(filterValue, column, Product.class, page, maxNum)
+                : this.findAllPerPage(page, maxNum);
+    }
+
+    private boolean checkFilterValue(String filterValue, String column) {
+        return StringUtils.hasText(column) && StringUtils.hasText(filterValue) && !filterValue.equals("null");
     }
 
 }

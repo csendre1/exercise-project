@@ -57,4 +57,10 @@ public class ProductController {
         return this.productService.numberOfProducts();
     }
 
+    @GetMapping("/filter")
+    public List<Product> filterProducts(@RequestParam int pageNum, @RequestParam int maxNum, @RequestParam String value,
+            @RequestParam String column) {
+        return productService.filterValues(pageNum, maxNum, value, column);
+    }
+
 }

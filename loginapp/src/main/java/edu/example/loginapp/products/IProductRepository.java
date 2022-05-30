@@ -1,11 +1,13 @@
-package edu.example.loginapp.repositories;
+package edu.example.loginapp.products;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import edu.example.loginapp.model.Product;
 
+@Repository
 public interface IProductRepository extends JpaRepository<Product, Long> {
 
     Product findBySerialNumber(String serialNumber);

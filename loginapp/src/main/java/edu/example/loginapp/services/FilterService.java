@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface FilterService {
 
-    <T> List<T> filter(String value, String column, Class<T> clazz);
+    <T> List<T> filter(String value, String column, Class<T> clazz, int pageNum, int numberOfResults);
 }
