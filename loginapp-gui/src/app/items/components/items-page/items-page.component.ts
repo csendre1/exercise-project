@@ -30,6 +30,8 @@ export class ItemsPageComponent implements OnInit {
 
   doFilter: EventEmitter<string> = new EventEmitter()
 
+  refresh: EventEmitter<boolean> = new EventEmitter()
+
   filteredValue: string = ''
 
   column: string = ''
@@ -58,7 +60,7 @@ export class ItemsPageComponent implements OnInit {
   }
 
   public refreshData() {
-    
+    this.refresh.emit(true)
   }
 
   public deleteProduct(id: number): void {
@@ -98,9 +100,9 @@ export class ItemsPageComponent implements OnInit {
   }
 
   private onAcceptDelete(id: number) {
-    this.itemService.deleteProduct(id).subscribe(resp => {
-      this.productList = this.productList.filter(val => val.id != id)
-      this.messageService.success("Delete product with success")
+    this.itemService.deleteProduct(id).subscribe(() => {
+      this.messageService.success("Product was deleted")
+      this.refresh.emit(true)
     })
   }
 

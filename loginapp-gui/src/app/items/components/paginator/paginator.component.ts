@@ -37,12 +37,8 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData();
-  }
-
-  public initData() {
-    this.initializeNumberOfPages();
-    this.loadPage()
-    this.startFiltering()
+    this.refreshData();
+    this.startFiltering();
   }
 
   public navigateOnPages(toPage: number) {
@@ -60,6 +56,17 @@ export class PaginatorComponent implements OnInit {
 
   }
 
+  private initData() {
+    this.initializeNumberOfPages();
+    this.loadPage()
+  }
+
+  private refreshData() {
+    this.refresh.subscribe(resp => {
+      this.initData();
+    })
+  }
+
   private startFiltering() {
     this.filter.subscribe(val => {
       this.filterValue = val;
@@ -71,9 +78,7 @@ export class PaginatorComponent implements OnInit {
     this.productService.getNumberOfProducts().subscribe(num => {
       this.numberOfProducts = num;
       this.calculateNumberOfPages()
-    }, err => {
-      console.log(err)
-    })
+    }, console.error)
   }
 
   private loadPage() {
@@ -83,6 +88,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   private calculateNumberOfPages() {
+    this.pages.length = 0
     let a = this.numberOfProducts / this.itemPerPage
     if (this.numberOfProducts % this.itemPerPage != 0)
       a += 1
