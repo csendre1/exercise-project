@@ -44,12 +44,14 @@
       <label for="itemCondition" class="block">{{
         "products.condition" | translate
       }}</label>
-      <div>
+      <div class="field">
         <p-dropdown
+          class=".product-condition"
           [options]="itemConditionList"
           formControlName="itemCondition"
           optionLabel="name"
           optionValue="value"
+          appendTo="body"
           [placeholder]="
             formItemConditionValue()
               ? (formItemConditionValue() | translate)

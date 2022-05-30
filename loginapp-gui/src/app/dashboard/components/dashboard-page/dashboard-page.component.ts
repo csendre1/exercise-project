@@ -14,7 +14,6 @@ export class DashboardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.loggedIn.emit(true)
-    this.messageService.success("User logged in.")
   }
 
 }

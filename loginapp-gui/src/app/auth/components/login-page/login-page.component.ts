@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api'
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IExport } from 'src/app/utils/export';
+import { GlobalMessageService } from 'src/app/utils/service/global-message.service';
 
 @Component({
   selector: 'app-login-page',
@@ -24,7 +25,8 @@ export class LoginPageComponent implements OnInit {
 
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private messageService: GlobalMessageService) { }
 
   public ngOnInit(): void { }
 
@@ -41,12 +43,18 @@ export class LoginPageComponent implements OnInit {
   private performLogin(): void {
     this.loggingIn = true
     this.authService.login(this.user).subscribe(resp => {
-      this.authService.setCredentials(this.user.username, resp.access_token);
-      this.loggingIn = false
-      this.router.navigate(['/dashboard']);
+      this.successfulLogin(resp)
     }, (err: HttpErrorResponse) => {
       console.error(err)
       this.loggingIn = false
     });
+  }
+
+  private successfulLogin(response: any) {
+    this.authService.setCredentials(this.user.username, response.access_token);
+    this.loggingIn = false
+    this.authService.loggedIn.emit(true)
+    this.messageService.success("User logged in.")
+    this.router.navigate(['/dashboard']);
   }
 }
