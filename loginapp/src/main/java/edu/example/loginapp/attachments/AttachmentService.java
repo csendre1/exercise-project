@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.example.loginapp.attachments.entities.Attachment;
 import edu.example.loginapp.attachments.entities.dto.AttachmentDTO;
-import edu.example.loginapp.autentication.IUserRepository;
+import edu.example.loginapp.autentication.AuthenticationServiceException;
+import edu.example.loginapp.autentication.IAuthService;
 import edu.example.loginapp.autentication.entities.AuthUser;
 
 @Service
@@ -22,7 +23,7 @@ public class AttachmentService implements IAttachmentService {
     private IAttachmentRepository attachmentRepository;
 
     @Autowired
-    private IUserRepository userRepository;
+    private IAuthService userService;
 
     @Override
     @Transactional
@@ -41,13 +42,14 @@ public class AttachmentService implements IAttachmentService {
 
     @Override
     @Transactional
-    public AttachmentDTO findUserImage(String username) {
-        AuthUser user = this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with!"));
-
-        Attachment userAttachment = user.getProfilePicture();
-
-        return userAttachment != null ? mapAttachmentToAttachmentDTO(userAttachment) : new AttachmentDTO();
+    public AttachmentDTO findUserImage(final String username) {
+        try {
+            AuthUser user = this.userService.findByUsername(username);
+            Attachment userAttachment = user.getProfilePicture();
+            return userAttachment != null ? mapAttachmentToAttachmentDTO(userAttachment) : new AttachmentDTO();
+        } catch (AuthenticationServiceException e) {
+            throw new AttachmentServiceException(e.getMessage());
+        }
     }
 
     private AttachmentDTO mapAttachmentToAttachmentDTO(Attachment attachment) {

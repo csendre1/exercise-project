@@ -7,10 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.example.loginapp.autentication.entities.AuthUser;
 import edu.example.loginapp.autentication.entities.dto.AuthUserDTO;
 
 @Service
 public interface IAuthService {
+
+    AuthUser findByUsername(final String username);
 
     ResponseEntity<HttpStatus> registration(final AuthUserDTO authUser, MultipartFile file) throws IOException;
 }

@@ -60,4 +60,10 @@ public class AuthService implements IAuthService {
                 .username(userDTO.getPassword()).profilePicture(profilePicture).build();
     }
 
+    @Override
+    public AuthUser findByUsername(String username) {
+        return this.userRepository.findByUsername(username).orElseThrow(() -> new AuthenticationServiceException(
+                "User not found with the given username: [ " + username + " }]"));
+    }
+
 }
