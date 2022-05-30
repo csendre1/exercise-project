@@ -53,7 +53,12 @@ export class ItemsPageComponent implements OnInit {
   public closedDialog(event: Product | null) {
     this.displayDialog = false
     if (event != null)
-      this.productList.push(event)
+      //refresh data
+      this.refreshData();
+  }
+
+  public refreshData() {
+    
   }
 
   public deleteProduct(id: number): void {
@@ -87,7 +92,6 @@ export class ItemsPageComponent implements OnInit {
   public filter(value: string) {
     this.filterProducts(value, "itemCondition");
   }
-
 
   public exportProducts() {
     this.exporter?.export(this.selectedProductList);

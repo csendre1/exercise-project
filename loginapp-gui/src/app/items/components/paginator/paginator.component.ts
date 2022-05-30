@@ -15,6 +15,8 @@ export class PaginatorComponent implements OnInit {
 
   @Input() filter: EventEmitter<string> = new EventEmitter()
 
+  @Input() refresh: EventEmitter<boolean> = new EventEmitter();
+
   @Output() pageLoaded: EventEmitter<Product[]> = new EventEmitter<Product[]>();
 
   pages: number[] = []
@@ -34,6 +36,10 @@ export class PaginatorComponent implements OnInit {
   constructor(private productService: ItemService) { }
 
   ngOnInit(): void {
+    this.initData();
+  }
+
+  public initData() {
     this.initializeNumberOfPages();
     this.loadPage()
     this.startFiltering()
