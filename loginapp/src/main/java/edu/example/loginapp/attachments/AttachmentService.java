@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,9 +26,11 @@ public class AttachmentService implements IAttachmentService {
     @Autowired
     private IAuthService userService;
 
+    private final IAttachmentMapper attachmentMapper = Mappers.getMapper(IAttachmentMapper.class);
+
     @Override
     @Transactional
-    public Attachment save(MultipartFile file) throws IOException {
+    public Attachment save(final MultipartFile file) throws IOException {
         try {
             return attachmentRepository.save(createAttachmentFromFile(file));
         } catch (IllegalArgumentException exception) {
@@ -46,7 +49,7 @@ public class AttachmentService implements IAttachmentService {
         try {
             AuthUser user = this.userService.findByUsername(username);
             Attachment userAttachment = user.getProfilePicture();
-            return userAttachment != null ? mapAttachmentToAttachmentDTO(userAttachment) : new AttachmentDTO();
+            return userAttachment != null ? attachmentMapper.fromAttachmentToDto(userAttachment) : new AttachmentDTO();
         } catch (AuthenticationServiceException e) {
             throw new AttachmentServiceException(e.getMessage());
         }
@@ -62,7 +65,7 @@ public class AttachmentService implements IAttachmentService {
 
     }
 
-    private Attachment createAttachmentFromFile(MultipartFile file) throws IOException {
+    private Attachment createAttachmentFromFile(final MultipartFile file) throws IOException {
         return Attachment.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())

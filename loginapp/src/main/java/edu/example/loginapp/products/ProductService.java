@@ -37,16 +37,16 @@ public class ProductService implements IProductService {
         if (!checkUniqueSerialNumber(newProduct.getSerialNumber()))
             throw new ProductServiceException(
                     "The product serial number is not unique.");
-        Product product = null;
+
         try {
-            product = productRepository.save(buildProduct(newProduct));
+            final Product product = productRepository.save(buildProduct(newProduct));
+
+            log.info("Product with name {} added in the db at {} ", product.getProductName(), product.getAddedTime());
+
+            return new ResponseEntity<>(product, HttpStatus.OK);
         } catch (Exception exception) {
             throw new ProductServiceException("Failed to save product in the database.");
         }
-
-        log.info("Product with name {} added in the db at {} ", product.getProductName(), product.getAddedTime());
-
-        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> findAllPerPage(int pageNum, int maxNum) {
+    public List<Product> findAllPerPage(final int pageNum, final int maxNum) {
 
         Pageable page = PageRequest.of(pageNum, maxNum);
 

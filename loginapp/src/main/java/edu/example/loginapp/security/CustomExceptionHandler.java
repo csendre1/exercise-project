@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import edu.example.loginapp.attachments.AttachmentServiceException;
 import edu.example.loginapp.autentication.AuthenticationServiceException;
 import edu.example.loginapp.filter.FilterServiceException;
 import edu.example.loginapp.products.ProductServiceException;
@@ -30,7 +31,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { ProductServiceException.class })
     public ResponseEntity<Object> handleProductExceptions(final RuntimeException ex) {
-        log.error("Error occurred in authentication service, {}", ex.getMessage());
+        log.error("Error occurred in product service, {}", ex.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
@@ -39,6 +40,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { FilterServiceException.class })
     public ResponseEntity<Object> handleFilterExceptions(final RuntimeException ex) {
         log.error("Error occurred in authentication service, {}", ex.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = { AttachmentServiceException.class })
+    public ResponseEntity<Object> handleAttachmentExceptions(final RuntimeException ex) {
+        log.error("Error occurred in attachment service, {}", ex.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
