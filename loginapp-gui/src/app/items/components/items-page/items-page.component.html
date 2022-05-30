@@ -36,6 +36,7 @@
     [resizableColumns]="true"
     [rowHover]="true"
     [(selection)]="selectedProductList"
+    styleClass="p-datatable-gridlines"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -44,26 +45,26 @@
           {{ "products.name" | translate }} <i class="pi pi-arrow-up"></i>
         </th>
         <th>{{ "products.serial-number" | translate }}</th>
-        <th>{{ "products.description" | translate }}</th>
+        <th class="description">{{ "products.description" | translate }}</th>
         <th>{{ "products.condition" | translate }}</th>
         <th>{{ "products.added-time" | translate }}</th>
-        <th></th>
+        <th class="buttons"></th>
       </tr>
       <tr>
         <th class="select">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th class="filter">
+        <th>
           <app-filter
             (filterValue)="filterProducts($event, 'productName')"
           ></app-filter>
         </th>
-        <th class="filter">
+        <th>
           <app-filter
             (filterValue)="filterProducts($event, 'serialNumber')"
           ></app-filter>
         </th>
-        <th class="filter">
+        <th class="description">
           <app-filter
             (filterValue)="filterProducts($event, 'description')"
           ></app-filter>
@@ -82,6 +83,7 @@
           </p-dropdown>
         </th>
         <th></th>
+        <th class="buttons"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
@@ -100,7 +102,7 @@
         </td>
         <td>{{ product.itemCondition }}</td>
         <td>{{ product.addedTime | date: "dd-MM-yyyy" }}</td>
-        <td>
+        <td class="buttons">
           <button
             pButton
             pRipple

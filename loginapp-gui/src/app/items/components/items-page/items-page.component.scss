@@ -5,7 +5,7 @@ $text_color : #32322C;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px;
+  max-width: 50rem;
 }
 
 .grid{
@@ -44,12 +44,11 @@ h1{
  grid-row: 3;
  grid-column-start: 1;
  grid-column-end: 4;
- width: auto;
 }
 
-// th{
-//   justify-content: center;
-// }
+th{
+  justify-content: center;
+}
 
 .dropdown-filter{
   overflow: visible !important;
@@ -57,5 +56,10 @@ h1{
 
 
 .select{
-  max-width: 3rem;
+  max-width: 4rem;
 }
+
+.buttons{
+  max-width: 8rem;
+}
+

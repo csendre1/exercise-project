@@ -51,7 +51,6 @@ export class PaginatorComponent implements OnInit {
     const num = (this.currentPage + 1) * this.itemPerPage;
     if (num <= this.numberOfProducts)
       return num
-
     return this.numberOfProducts
 
   }
