@@ -19,8 +19,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import edu.example.loginapp.filters.CustomAuthenticationFilter;
-import edu.example.loginapp.filters.JwtTokenFilter;
+import edu.example.loginapp.security.filters.CustomAuthenticationFilter;
+import edu.example.loginapp.security.filters.JwtTokenFilter;
 
 @EnableWebSecurity
 @Configuration

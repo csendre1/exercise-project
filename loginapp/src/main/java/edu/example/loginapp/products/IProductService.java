@@ -1,15 +1,14 @@
-package edu.example.loginapp.services;
+package edu.example.loginapp.products;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import edu.example.loginapp.dto.ProductDTO;
-import edu.example.loginapp.model.Product;
-import edu.example.loginapp.model.Response;
+import edu.example.loginapp.products.entities.Product;
+import edu.example.loginapp.products.entities.dto.ProductDTO;
 
-public interface ProductService {
+public interface IProductService {
 
     ResponseEntity<Product> saveProduct(ProductDTO product);
 
@@ -17,7 +16,7 @@ public interface ProductService {
 
     ResponseEntity<Product> updateProduct(Product product);
 
-    ResponseEntity<Response<String>> delete(Long id);
+    ResponseEntity<String> delete(Product product);
 
     List<Product> findAllPerPage(int page, int maxNum);
 
