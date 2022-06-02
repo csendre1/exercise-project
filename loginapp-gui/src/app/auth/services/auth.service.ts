@@ -25,7 +25,7 @@ export class AuthService {
 
   loggedIn = new EventEmitter<boolean>();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,) { }
 
   public login(user: AuthUser): Observable<any> {
     return this.httpClient.post<any>(URL_LOGIN, user);
@@ -67,7 +67,7 @@ export class AuthService {
     if (username == null)
       throw Error("Username can't be null!")
 
-    return this.httpClient.get<AttachmentRESP>(`${URL_IMAGE}/${username}`)
+    return this.httpClient.get<AttachmentRESP>(`${BASE_URL}/user/image`, { params: { username: username } })
   }
 
   public logout() {

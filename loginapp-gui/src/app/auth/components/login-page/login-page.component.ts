@@ -23,7 +23,6 @@ export class LoginPageComponent implements OnInit {
 
   loggingIn: boolean = false
 
-
   constructor(private authService: AuthService,
     private router: Router,
     private messageService: GlobalMessageService) { }

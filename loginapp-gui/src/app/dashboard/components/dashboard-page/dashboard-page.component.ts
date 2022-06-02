@@ -13,7 +13,6 @@ export class DashboardPageComponent implements OnInit {
     private messageService: GlobalMessageService) { }
 
   ngOnInit(): void {
-    this.authService.loggedIn.emit(true)
   }
 
 }

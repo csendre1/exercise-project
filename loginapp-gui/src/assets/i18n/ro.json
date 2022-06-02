@@ -2,6 +2,7 @@
   "title" : "Login-APP",
   "welcome": "Bine ati venit",
   "dashboard":{
+    "page":"Pagina de start",
     "link": "Pagina de start"
   },
   "export" : "Exportare",

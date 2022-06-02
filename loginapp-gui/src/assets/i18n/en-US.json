@@ -7,7 +7,7 @@
   "export" : "Export",
   "products" : {
     "link" : "Products",
-    "title": "Product list",
+    "title": "Products list",
     "new" : "Add new",
     "name":"Product name",
     "serial-number" : "Serial number",

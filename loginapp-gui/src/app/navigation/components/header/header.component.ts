@@ -43,10 +43,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public openUserMenu() {
-    // TODO : to implement method
-  }
-
   private checkImageIsNull() {
     this.imageNotNull = !!this.image;
   }

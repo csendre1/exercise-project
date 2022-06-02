@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { NavigationModule } from '../navigation/navigation.module';
 import { DesignModule } from '../design/design.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DesignModule } from '../design/design.module';
     CommonModule,
     DashboardRoutingModule,
     NavigationModule,
-    DesignModule
+    DesignModule,
+    TranslateModule
   ]
 })
 export class DashboardModule { }

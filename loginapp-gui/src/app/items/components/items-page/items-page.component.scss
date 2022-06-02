@@ -10,7 +10,7 @@ $text_color : #32322C;
 
 .grid{
   display: grid;
-  grid-template-columns: 0.12fr 1fr 0.15fr;
+  grid-template-columns: 0.05fr 1fr 0.15fr;
   grid-row-gap: 1em;
   width: 96%;
   height: 100%;
@@ -30,6 +30,7 @@ h1{
 }
 
 .export-type{
+  margin-left: 1rem;
   grid-column: 2;
   grid-row: 2;
 }

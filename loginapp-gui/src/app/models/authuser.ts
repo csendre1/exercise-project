@@ -1,8 +1,9 @@
 import { Attachment } from "./attachment"
 
-export interface AuthUser{
-    name ?: string
-    username : string
-    password : string
-    profilePicture ?: Attachment
+export interface AuthUser {
+  id?: number
+  name?: string
+  username: string
+  password: string
+  profilePicture?: Attachment
 }
