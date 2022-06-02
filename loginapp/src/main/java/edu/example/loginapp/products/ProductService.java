@@ -59,12 +59,11 @@ public class ProductService implements IProductService {
 
         if (product == null)
             throw new ProductServiceException("Product can't be null.");
-        try{
+        try {
             productRepository.save(product);
             return new ResponseEntity<>(product, HttpStatus.OK);
-        }
-        catch(Exception e){
-            throw new ProductServiceException("Error updating the product.")
+        } catch (Exception e) {
+            throw new ProductServiceException("Error updating the product.");
         }
     }
 

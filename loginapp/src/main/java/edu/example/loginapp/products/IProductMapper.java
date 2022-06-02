@@ -6,7 +6,7 @@ import edu.example.loginapp.products.entities.Product;
 import edu.example.loginapp.products.entities.dto.ProductDTO;
 
 @Mapper
-public interface ProductMapper {
+public interface IProductMapper {
     Product dtoToProduct(ProductDTO entity);
 
     ProductDTO productToDto(Product entity);

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.example.loginapp.attachments.entities.Attachment;
 import edu.example.loginapp.attachments.entities.dto.AttachmentDTO;
+import edu.example.loginapp.autentication.entities.AuthUser;
 
 public interface IAttachmentService {
 
@@ -14,5 +15,6 @@ public interface IAttachmentService {
 
     List<Attachment> getAllImages();
 
-    AttachmentDTO findUserImage(String username);
+    AttachmentDTO findUserImage(AuthUser user);
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +21,6 @@ public class AttachmentService implements IAttachmentService {
 
     @Autowired
     private IAttachmentRepository attachmentRepository;
-
-    @Autowired
-    private IAuthService userService;
-
-    private final IAttachmentMapper attachmentMapper = Mappers.getMapper(IAttachmentMapper.class);
 
     @Override
     @Transactional
@@ -45,11 +39,10 @@ public class AttachmentService implements IAttachmentService {
 
     @Override
     @Transactional
-    public AttachmentDTO findUserImage(final String username) {
+    public AttachmentDTO findUserImage(final AuthUser user) {
         try {
-            AuthUser user = this.userService.findByUsername(username);
-            Attachment userAttachment = user.getProfilePicture();
-            return userAttachment != null ? attachmentMapper.fromAttachmentToDto(userAttachment) : new AttachmentDTO();
+            final Attachment userAttachment = user.getProfilePicture();
+            return userAttachment != null ? mapAttachmentToAttachmentDTO(userAttachment) : new AttachmentDTO();
         } catch (AuthenticationServiceException e) {
             throw new AttachmentServiceException(e.getMessage());
         }
