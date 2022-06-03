@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import edu.example.loginapp.filter.entities.Pagination;
 import edu.example.loginapp.products.entities.Product;
 import edu.example.loginapp.products.entities.dto.ProductDTO;
 
@@ -22,5 +23,5 @@ public interface IProductService {
 
     long numberOfProducts();
 
-    List<Product> filterValues(int page, int maxNum, String filterValue, String column);
+    List<Product> filterValues(Pagination pagination);
 }

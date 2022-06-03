@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.example.loginapp.filter.entities.Pagination;
 import edu.example.loginapp.products.entities.Product;
 import edu.example.loginapp.products.entities.dto.ProductDTO;
+import edu.example.loginapp.utils.JsonReader;
 
 @RestController
 @RequestMapping("/product")
@@ -55,10 +57,8 @@ public class ProductController {
     }
 
     @GetMapping("/filter")
-    public List<Product> filterProducts(@RequestParam final int pageNum, @RequestParam final int maxNum,
-            @RequestParam String value,
-            @RequestParam String column) {
-        return productService.filterValues(pageNum, maxNum, value, column);
+    public List<Product> filterProducts(@RequestParam final String pagination) {
+        return productService.filterValues(JsonReader.convertJsonToObject(pagination, Pagination.class));
     }
 
 }

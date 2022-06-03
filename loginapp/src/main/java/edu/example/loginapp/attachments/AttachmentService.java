@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.example.loginapp.attachments.entities.Attachment;
 import edu.example.loginapp.attachments.entities.dto.AttachmentDTO;
 import edu.example.loginapp.autentication.AuthenticationServiceException;
-import edu.example.loginapp.autentication.IAuthService;
+
 import edu.example.loginapp.autentication.entities.AuthUser;
 
 @Service
@@ -26,7 +26,7 @@ public class AttachmentService implements IAttachmentService {
     @Transactional
     public Attachment save(final MultipartFile file) throws IOException {
         try {
-            return attachmentRepository.save(createAttachmentFromFile(file));
+            return attachmentRepository.save(buildAttachmentFromFile(file));
         } catch (IllegalArgumentException exception) {
             throw new IllegalArgumentException("Error saving the attachment in the database.");
         }
@@ -58,7 +58,7 @@ public class AttachmentService implements IAttachmentService {
 
     }
 
-    private Attachment createAttachmentFromFile(final MultipartFile file) throws IOException {
+    private Attachment buildAttachmentFromFile(final MultipartFile file) throws IOException {
         return Attachment.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())

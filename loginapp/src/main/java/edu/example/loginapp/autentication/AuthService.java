@@ -66,6 +66,7 @@ public class AuthService implements IAuthService {
     }
 
     @Override
+    @Transactional
     public AttachmentDTO findUserImage(final String username) {
         return this.attachmentService.findUserImage(findByUsername(username));
     }

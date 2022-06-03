@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import edu.example.loginapp.filter.IFilterService;
+import edu.example.loginapp.filter.entities.Pagination;
 import edu.example.loginapp.products.entities.Product;
 import edu.example.loginapp.products.entities.dto.ProductDTO;
 import lombok.extern.log4j.Log4j2;
@@ -91,11 +92,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> filterValues(int page, int maxNum, String filterValue, String column) {
+    public List<Product> filterValues(Pagination pagination) {
 
-        return checkFilterValue(filterValue, column)
-                ? filterService.filter(filterValue, column, Product.class, page, maxNum)
-                : this.findAllPerPage(page, maxNum);
+        return checkFilterValue(pagination.value(), pagination.column())
+                ? filterService.filter(pagination, Product.class)
+                : this.findAllPerPage(pagination.startingPosition(), pagination.numberOfResults());
     }
 
     private Product buildProduct(final ProductDTO productDTO) {

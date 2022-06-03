@@ -34,7 +34,7 @@ public class AuthController {
 
     @GetMapping("user/image")
     public AttachmentDTO findUserImage(@RequestParam final String username) {
-        return this.findUserImage(username);
+        return this.authService.findUserImage(username);
     }
 
     private AuthUserDTO createAuthUserDTO(final String authUser) throws JsonMappingException, JsonProcessingException {
