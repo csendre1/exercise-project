@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ProductOrder } from 'src/app/models/pagination';
 import { Product, ProductCondition, ProductConditionList, ProductConditionSelect, ProductForm } from 'src/app/models/product';
 import { IExport } from 'src/app/utils/export';
 import { ExportEXCEL } from 'src/app/utils/export/excel.export';
@@ -36,6 +37,8 @@ export class ItemsPageComponent implements OnInit {
 
   column: string = ''
 
+  order: ProductOrder = ProductOrder.ASC
+
   productToUpgrade: Product | null = null;
 
   exportTypes = [{ name: 'PDF', value: new ExportPDF() }, { name: 'EXCEL', value: new ExportEXCEL() }]
@@ -55,7 +58,6 @@ export class ItemsPageComponent implements OnInit {
   public closedDialog(event: Product | null) {
     this.displayDialog = false
     if (event != null)
-      //refresh data
       this.refreshData();
   }
 
@@ -76,10 +78,11 @@ export class ItemsPageComponent implements OnInit {
     })
   }
 
-  public filterProducts(value: string, column: string): void {
-    this.filteredValue = value;
+  public filterProducts(data: any, column: string): void {
+    this.filteredValue = data.value;
     this.column = column
-    this.doFilter.emit(value)
+    this.order = data.order
+    this.doFilter.emit(this.filteredValue)
   }
 
   public pageLoaded(productList: any) {

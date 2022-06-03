@@ -41,8 +41,8 @@
     <ng-template pTemplate="header">
       <tr>
         <th class="select"></th>
-        <th pSortableColumn>
-          {{ "products.name" | translate }} <i class="pi pi-arrow-up"></i>
+        <th>
+          {{ "products.name" | translate }}
         </th>
         <th>{{ "products.serial-number" | translate }}</th>
         <th class="description">{{ "products.description" | translate }}</th>
@@ -126,6 +126,7 @@
       <app-paginator
         (pageLoaded)="pageLoaded($event)"
         [column]="column"
+        [order]="order"
         [filter]="doFilter"
         [refresh]="refresh"
       ></app-paginator>

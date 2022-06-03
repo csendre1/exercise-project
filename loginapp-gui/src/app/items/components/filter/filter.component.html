@@ -1,8 +1,13 @@
-<div>
+<div class="container">
   <input
     type="text"
     pInputText
-    (input)="filter($event)"
+    (input)="filter()"
     [(ngModel)]="filterValueField"
   />
+  <button
+    pButton
+    [icon]="isAscending ? 'pi pi-arrow-up' : 'pi pi-arrow-down'"
+    (click)="changeOrder()"
+  ></button>
 </div>

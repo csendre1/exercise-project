@@ -14,6 +14,8 @@ export class PaginatorComponent implements OnInit {
 
   @Input() column: string = ''
 
+  @Input() order: ProductOrder = ProductOrder.ASC
+
   @Input() filter: EventEmitter<string> = new EventEmitter()
 
   @Input() refresh: EventEmitter<boolean> = new EventEmitter();
@@ -84,7 +86,7 @@ export class PaginatorComponent implements OnInit {
   private loadPage() {
     this.productService.filter(this.buildPagination()).subscribe(resp => {
       this.pageLoaded.emit(resp);
-    })
+    }, console.error)
   }
 
   private buildPagination(): Pagination {
@@ -93,7 +95,7 @@ export class PaginatorComponent implements OnInit {
       numberOfResults: this.itemPerPage,
       value: this.filterValue,
       column: this.column,
-      order: ProductOrder.ASC
+      order: this.order
     }
   }
 
