@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Pagination } from 'src/app/models/pagination';
 import { Product } from 'src/app/models/product';
 
 const PRODUCT_URL = 'http://localhost:8080/product';
@@ -38,9 +39,9 @@ export class ItemService {
     return this.httpClient.get<number>(`${PRODUCT_URL}/numberOfProducts`)
   }
 
-  public filter(pageNum: number, itemsPerPage: number, value: string, column: string) {
+  public filter(pagination: Pagination) {
     return this.httpClient.get<Product[]>(`${PRODUCT_URL}/filter`, {
-      params: { pageNum: pageNum, maxNum: itemsPerPage, value: value, column: column }
+      params: { pagination: JSON.stringify(pagination) }
     })
   }
 }

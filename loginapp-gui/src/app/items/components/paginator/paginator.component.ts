@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Pagination, ProductOrder } from 'src/app/models/pagination';
 import { Product } from 'src/app/models/product';
 import { ItemService } from '../../service/item.service';
 
@@ -81,9 +82,19 @@ export class PaginatorComponent implements OnInit {
   }
 
   private loadPage() {
-    this.productService.filter(this.currentPage, this.itemPerPage, this.filterValue, this.column).subscribe(resp => {
+    this.productService.filter(this.buildPagination()).subscribe(resp => {
       this.pageLoaded.emit(resp);
     })
+  }
+
+  private buildPagination(): Pagination {
+    return {
+      startingPosition: this.currentPage,
+      numberOfResults: this.itemPerPage,
+      value: this.filterValue,
+      column: this.column,
+      order: ProductOrder.ASC
+    }
   }
 
   private calculateNumberOfPages() {
